@@ -1,14 +1,14 @@
-import datetime
-while True:
-    birth_year = int(input("What year were you born? "))
-    current_year = datetime.datetime.now().year
-    age = current_year - birth_year
-    print(f"You are {age} years old now.")
-    choice = input("Do you want to go again? (yes or no) ")
-    if choice == 'yes':
-        print("enjoy")
-    elif choice == 'no':
-        print ("Ok, quitting now")
-        break
-    else:
-        print("i'll assume that means yes")
+
+from datetime import datetime, date
+
+print("Your date of birth (dd mm yyyy)")
+date_of_birth = datetime.strptime(input("---> "), "%d %m %Y")
+
+def calculate_age(born):
+    today = date.today()
+    return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
+
+age = calculate_age(date_of_birth)
+
+print("you are", age)
+input()
